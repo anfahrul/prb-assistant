@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    android:label="Farmasi"
+    app:startDestination="@id/controlBookFragment">
+
+    <fragment
+        android:id="@+id/controlBookFragment"
+        android:name="com.example.prbassistant.ControlBookFragment"
+        android:label="Buku Kontrol"
+        tools:layout="@layout/fragment_control_book" />
+    <fragment
+        android:id="@+id/pharmacyFragment"
+        android:name="com.example.prbassistant.PharmacyFragment"
+        android:label="Farmasi"
+        tools:layout="@layout/fragment_pharmacy" />
+    <fragment
+        android:id="@+id/medicineReminderFragment3"
+        android:name="com.example.prbassistant.MedicineReminderFragment"
+        android:label="Pengingat Obat"
+        tools:layout="@layout/fragment_medicine_reminder" />
+</navigation>

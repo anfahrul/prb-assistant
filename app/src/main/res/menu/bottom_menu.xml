@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/controlBookFragment"
+        android:title="Buku Kontrol"
+        android:icon="@drawable/ic_book" />
+    <item
+        android:id="@+id/pharmacyFragment"
+        android:title="Farmasi"
+        android:icon="@drawable/ic_pharmacy" />
+    <item
+        android:id="@+id/medicineReminderFragment3"
+        android:title="Pengingat Obat"
+        android:icon="@drawable/ic_time" />
+
+</menu>
