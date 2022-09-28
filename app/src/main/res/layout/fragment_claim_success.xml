@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ClaimSuccessFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_success"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_success"/>
+
+        <TextView
+            android:id="@+id/text_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:text="Sukses!"
+            android:layout_below="@+id/img_success"
+            android:textStyle="bold"
+            android:textSize="18pt"/>
+
+        <TextView
+            android:id="@+id/text_desc_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_success"
+            android:layout_marginTop="4dp"
+            android:textAlignment="center"
+            android:text="Disini deskripsi" />
+
+        <TextView
+            android:id="@+id/text_desc_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_desc_name"
+            android:layout_marginTop="4dp"
+            android:textAlignment="center"
+            android:text="Disini deskripsi" />
+
+        <Button
+            android:id="@+id/btn_success_oke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_desc_address"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="OKE"/>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

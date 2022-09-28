@@ -5,16 +5,26 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prbassistant.PharmacyListFragment
+import com.example.prbassistant.PharmacyListFragmentDirections
 import com.example.prbassistant.model.Medicine
 import com.example.prbassistant.R
 import com.example.prbassistant.model.Pharmacy
 
 class ListPharmacyAdapter(private val listPharmacy: ArrayList<Pharmacy>): RecyclerView.Adapter<ListPharmacyAdapter.ListViewHolder>() {
     private var selectedItemPosition: Int = -1
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     inner class ListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var tvName: TextView = itemView.findViewById(R.id.text_pharmacy_name)
@@ -35,6 +45,7 @@ class ListPharmacyAdapter(private val listPharmacy: ArrayList<Pharmacy>): Recycl
         holder.itemView.setOnClickListener {
             selectedItemPosition = position
             notifyDataSetChanged()
+            onItemClickCallback.onItemClicked(pharmacy)
         }
 
         if(selectedItemPosition == position) {
@@ -46,5 +57,9 @@ class ListPharmacyAdapter(private val listPharmacy: ArrayList<Pharmacy>): Recycl
 
     override fun getItemCount(): Int {
         return listPharmacy.size
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Pharmacy)
     }
 }

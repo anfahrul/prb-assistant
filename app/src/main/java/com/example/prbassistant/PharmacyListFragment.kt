@@ -7,23 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prbassistant.adapter.ListMedicineAdapter
 import com.example.prbassistant.adapter.ListPharmacyAdapter
-import com.example.prbassistant.model.Medicine
-import com.example.prbassistant.model.MedicinesData
 import com.example.prbassistant.model.Pharmacy
 import com.example.prbassistant.model.PharmacyData
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PharmacyListFragment : Fragment(), View.OnClickListener {
     private lateinit var rvPharmacy: RecyclerView
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<ListPharmacyAdapter.ListViewHolder>? = null
+    private var listPharmacyAdapter: ListPharmacyAdapter? = null
     private var list: ArrayList<Pharmacy> = arrayListOf()
 
     override fun onCreateView(
@@ -41,12 +35,18 @@ class PharmacyListFragment : Fragment(), View.OnClickListener {
         rvPharmacy = view.findViewById(R.id.rv_pharmacy)
         rvPharmacy.setHasFixedSize(true)
 
-        rvPharmacy.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = ListPharmacyAdapter(list)
-        }
+        rvPharmacy.layoutManager = LinearLayoutManager(activity)
+        listPharmacyAdapter = ListPharmacyAdapter(list)
+        rvPharmacy.adapter = listPharmacyAdapter
 
-        var btnBack: Button = view.findViewById(R.id.btn_cancel_claim)
+        listPharmacyAdapter!!.setOnItemClickCallback(object : ListPharmacyAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Pharmacy) {
+                showSelectedPharmacy(data)
+                sendSuccessData(data)
+            }
+        })
+
+        val btnBack: Button = view.findViewById(R.id.btn_cancel_claim)
         btnBack.setOnClickListener(this)
     }
 
@@ -57,5 +57,14 @@ class PharmacyListFragment : Fragment(), View.OnClickListener {
                 getActivity()?.startActivity(intent)
             }
         }
+    }
+
+    private fun showSelectedPharmacy(pharmacy: Pharmacy) {
+        Toast.makeText(this.activity, "Kamu memilih " + pharmacy.name, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun sendSuccessData(pharmacy: Pharmacy) {
+        val action = PharmacyListFragmentDirections.actionPharmacyListFragment2ToClaimSuccessFragment(pharmacy)
+        findNavController().navigate(action)
     }
 }
