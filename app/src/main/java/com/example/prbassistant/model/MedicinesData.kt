@@ -1,4 +1,4 @@
-package com.example.prbassistant
+package com.example.prbassistant.model
 
 object MedicinesData {
     private val medicineName = arrayOf(

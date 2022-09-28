@@ -1,15 +1,20 @@
 package com.example.prbassistant
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prbassistant.Adapter.ListMedicineAdapter
+import com.example.prbassistant.adapter.ListMedicineAdapter
+import com.example.prbassistant.model.Medicine
+import com.example.prbassistant.model.MedicinesData
+import kotlinx.coroutines.Dispatchers.Main
 
-class PharmacyFragment : Fragment() {
+class PharmacyFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private lateinit var rvMedicine: RecyclerView
     private var layoutManager: RecyclerView.LayoutManager? = null
@@ -35,10 +40,22 @@ class PharmacyFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             adapter = ListMedicineAdapter(list)
         }
+
+        var btnTebus = view.findViewById<Button>(R.id.btn_tebus)
+        btnTebus.setOnClickListener(this)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         list.clear()
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.btn_tebus -> {
+                val intent = Intent (getActivity(), PharmacyActivity::class.java)
+                getActivity()?.startActivity(intent)
+            }
+        }
     }
 }
