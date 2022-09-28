@@ -17,10 +17,14 @@
     <fragment
         android:id="@+id/claimSuccessFragment"
         android:name="com.example.prbassistant.ClaimSuccessFragment"
-        android:label="fragment_claim_success"
-        tools:layout="@layout/fragment_claim_success" >
+        android:label="Success"
+        tools:layout="@layout/fragment_claim_success">
         <argument
             android:name="currentPharmacy"
             app:argType="com.example.prbassistant.model.Pharmacy" />
+        <argument
+            android:name="id_receipt"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 
 class ClaimSuccessFragment : Fragment(), View.OnClickListener {
@@ -16,6 +17,7 @@ class ClaimSuccessFragment : Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
     override fun onCreateView(
@@ -33,10 +35,12 @@ class ClaimSuccessFragment : Fragment(), View.OnClickListener {
 
         val pharmacyName: TextView = view.findViewById(R.id.text_desc_name)
         val pharmacyAddress: TextView = view.findViewById(R.id.text_desc_address)
+        val idReceipt: TextView = view.findViewById(R.id.text_id_receipt)
         val btnSuccessOk: Button = view.findViewById(R.id.btn_success_oke)
 
         pharmacyName.text = args.currentPharmacy.name
         pharmacyAddress.text = args.currentPharmacy.address
+        idReceipt.text = args.idReceipt
 
         btnSuccessOk.setOnClickListener(this)
     }

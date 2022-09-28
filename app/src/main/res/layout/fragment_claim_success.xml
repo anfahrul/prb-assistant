@@ -32,13 +32,42 @@
             android:textStyle="bold"
             android:textSize="18pt"/>
 
+        <RelativeLayout
+            android:id="@+id/section_id_receipt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_success"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/text_id_receipt_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="ID RESEP: "
+                android:textAlignment="center"
+                android:textColor="@color/green_700"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/text_id_receipt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@id/text_id_receipt_header"
+                android:text="BELUM ADA"
+                android:textColor="@color/green_700"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/text_desc_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_success"
-            android:layout_marginTop="4dp"
+            android:layout_below="@+id/section_id_receipt"
             android:textAlignment="center"
+            android:textStyle="bold"
             android:text="Disini deskripsi" />
 
         <TextView
@@ -46,15 +75,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_desc_name"
-            android:layout_marginTop="4dp"
             android:textAlignment="center"
+            android:textStyle="bold"
             android:text="Disini deskripsi" />
+
+        <TextView
+            android:id="@+id/text_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_desc_address"
+            android:layout_marginTop="16dp"
+            android:textAlignment="center"
+            android:text="Silahkan perlihatkan ID resep kepada apoteker \nsaat hendak mengambil obat" />
+
 
         <Button
             android:id="@+id/btn_success_oke"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_desc_address"
+            android:layout_below="@+id/text_desc"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:text="OKE"/>

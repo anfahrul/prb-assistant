@@ -18,7 +18,7 @@ import com.example.prbassistant.model.Medicine
 import com.example.prbassistant.R
 import com.example.prbassistant.model.Pharmacy
 
-class ListPharmacyAdapter(private val listPharmacy: ArrayList<Pharmacy>): RecyclerView.Adapter<ListPharmacyAdapter.ListViewHolder>() {
+class ListPharmacyAdapter(private val listPharmacy: ArrayList<Pharmacy>, private val id_receipt: String?): RecyclerView.Adapter<ListPharmacyAdapter.ListViewHolder>() {
     private var selectedItemPosition: Int = -1
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -45,7 +45,7 @@ class ListPharmacyAdapter(private val listPharmacy: ArrayList<Pharmacy>): Recycl
         holder.itemView.setOnClickListener {
             selectedItemPosition = position
             notifyDataSetChanged()
-            onItemClickCallback.onItemClicked(pharmacy)
+            onItemClickCallback.onItemClicked(pharmacy, id_receipt)
         }
 
         if(selectedItemPosition == position) {
@@ -60,6 +60,6 @@ class ListPharmacyAdapter(private val listPharmacy: ArrayList<Pharmacy>): Recycl
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: Pharmacy)
+        fun onItemClicked(data: Pharmacy, id_receipt: String?)
     }
 }
