@@ -1,5 +1,6 @@
 package com.example.prbassistant
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,9 +45,17 @@ class PharmacyListFragment : Fragment(), View.OnClickListener {
             layoutManager = LinearLayoutManager(activity)
             adapter = ListPharmacyAdapter(list)
         }
+
+        var btnBack: Button = view.findViewById(R.id.btn_cancel_claim)
+        btnBack.setOnClickListener(this)
     }
 
-    override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.btn_cancel_claim -> {
+                val intent = Intent (getActivity(), MainActivity::class.java)
+                getActivity()?.startActivity(intent)
+            }
+        }
     }
 }
