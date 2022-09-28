@@ -55,6 +55,7 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
         when(v?.id) {
             R.id.btn_tebus -> {
                 val intent = Intent (getActivity(), PharmacyActivity::class.java)
+                intent.putExtra(PharmacyListFragment.EXTRA_ID_RECEIPE, "192837465")
                 getActivity()?.startActivity(intent)
             }
         }

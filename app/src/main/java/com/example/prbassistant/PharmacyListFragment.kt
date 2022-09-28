@@ -16,6 +16,10 @@ import com.example.prbassistant.model.Pharmacy
 import com.example.prbassistant.model.PharmacyData
 
 class PharmacyListFragment : Fragment(), View.OnClickListener {
+    companion object {
+        const val EXTRA_ID_RECEIPE = "extra_id_receipe"
+    }
+
     private lateinit var rvPharmacy: RecyclerView
     private var listPharmacyAdapter: ListPharmacyAdapter? = null
     private var list: ArrayList<Pharmacy> = arrayListOf()
@@ -32,21 +36,24 @@ class PharmacyListFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val id_receipt = activity?.intent?.getStringExtra(EXTRA_ID_RECEIPE)
         rvPharmacy = view.findViewById(R.id.rv_pharmacy)
         rvPharmacy.setHasFixedSize(true)
 
         rvPharmacy.layoutManager = LinearLayoutManager(activity)
-        listPharmacyAdapter = ListPharmacyAdapter(list)
+        listPharmacyAdapter = ListPharmacyAdapter(list, id_receipt)
         rvPharmacy.adapter = listPharmacyAdapter
 
         listPharmacyAdapter!!.setOnItemClickCallback(object : ListPharmacyAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: Pharmacy) {
+            override fun onItemClicked(data: Pharmacy, id_receipt: String?) {
                 showSelectedPharmacy(data)
-                sendSuccessData(data)
+                sendSuccessData(data, id_receipt)
             }
+
         })
 
         val btnBack: Button = view.findViewById(R.id.btn_cancel_claim)
+
         btnBack.setOnClickListener(this)
     }
 
@@ -63,8 +70,8 @@ class PharmacyListFragment : Fragment(), View.OnClickListener {
         Toast.makeText(this.activity, "Kamu memilih " + pharmacy.name, Toast.LENGTH_SHORT).show()
     }
 
-    private fun sendSuccessData(pharmacy: Pharmacy) {
-        val action = PharmacyListFragmentDirections.actionPharmacyListFragment2ToClaimSuccessFragment(pharmacy)
+    private fun sendSuccessData(pharmacy: Pharmacy, id_receipt: String?) {
+        val action = PharmacyListFragmentDirections.actionPharmacyListFragment2ToClaimSuccessFragment(pharmacy, id_receipt)
         findNavController().navigate(action)
     }
 }
