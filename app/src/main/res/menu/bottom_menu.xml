@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/pharmacyFragment"
-        android:title="Farmasi"
+        android:title="Resep Obat"
         android:icon="@drawable/ic_pharmacy" />
     <item
         android:id="@+id/controlBookFragment"

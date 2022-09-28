@@ -1,4 +1,4 @@
-package com.example.prbassistant
+package com.example.prbassistant.model
 
 data class Medicine(
     var name: String = "",

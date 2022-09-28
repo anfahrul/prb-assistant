@@ -1,11 +1,11 @@
-package com.example.prbassistant.Adapter
+package com.example.prbassistant.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prbassistant.Medicine
+import com.example.prbassistant.model.Medicine
 import com.example.prbassistant.R
 
 class ListMedicineAdapter(private val listMedicine: ArrayList<Medicine>): RecyclerView.Adapter<ListMedicineAdapter.ListViewHolder>() {
