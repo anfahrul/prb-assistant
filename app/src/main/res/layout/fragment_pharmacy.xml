@@ -35,12 +35,10 @@
                     android:id="@+id/text_id_receipe_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:text="ID Resep Obat"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textColor="@color/abu_abu"
+                    android:layout_marginStart="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/section_identifier" />
+                    app:layout_constraintTop_toTopOf="@id/section_identifier"/>
 
                 <TextView
                     android:id="@+id/text_id_receipe"
@@ -48,7 +46,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="192837465"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_id_receipe_header" />
 
@@ -56,13 +55,10 @@
                     android:id="@+id/text_status_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Status Claim"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Status"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textColor="@color/abu_abu"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_id_receipe" />
+                    app:layout_constraintTop_toBottomOf="@id/text_id_receipe"/>
 
                 <TextView
                     android:id="@+id/text_status"
@@ -70,7 +66,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Belum ditebus"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_status_header" />
 
@@ -111,8 +108,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Apotek Tempat Mengambil"
+                    android:textStyle="bold"
                     android:textColor="@color/green_700"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/section_apotek" />
 
@@ -122,7 +119,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Nama Apotek"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textColor="@color/abu_abu"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_heading_receipe" />
@@ -132,7 +128,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Belum dipilih"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_apotek_name_header" />
 
@@ -142,7 +139,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Alamat"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textColor="@color/abu_abu"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_apotek_name" />
@@ -152,7 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Belum dipilih"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_address_header" />
             </androidx.constraintlayout.widget.ConstraintLayout>

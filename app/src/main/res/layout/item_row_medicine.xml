@@ -27,7 +27,7 @@
             android:text="Paracetamol lorem ipsum dolor sit amet lorem"
             android:layout_toEndOf="@id/image_medicine"
             android:layout_alignParentEnd="true"
-            android:textAppearance="?attr/textAppearanceHeadline6"/>
+            android:textColor="@color/black"/>
 
         <TableLayout
             android:layout_width="match_parent"
@@ -48,17 +48,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:text="1"
-                        android:textSize="7pt"
-                        android:textColor="@color/abu_abu"
-                        android:textAppearance="?attr/textAppearanceHeadline6"/>
+                        android:textColor="@color/abu_abu" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tablet"
-                        android:textSize="7pt"
-                        android:textColor="@color/abu_abu"
-                        android:textAppearance="?attr/textAppearanceHeadline6"/>
+                        android:textColor="@color/abu_abu"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -71,17 +67,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:text="3"
-                        android:textSize="7pt"
-                        android:textColor="@color/abu_abu"
-                        android:textAppearance="?attr/textAppearanceHeadline6"/>
+                        android:textColor="@color/abu_abu" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kali Sehari"
-                        android:textSize="7pt"
-                        android:textColor="@color/abu_abu"
-                        android:textAppearance="?attr/textAppearanceHeadline6"/>
+                        android:textColor="@color/abu_abu" />
                 </LinearLayout>
             </TableRow>
         </TableLayout>
