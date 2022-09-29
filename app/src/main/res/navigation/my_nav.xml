@@ -10,7 +10,11 @@
         android:id="@+id/controlBookFragment"
         android:name="com.example.prbassistant.ControlBookFragment"
         android:label="Buku Kontrol"
-        tools:layout="@layout/fragment_control_book" />
+        tools:layout="@layout/fragment_control_book" >
+        <action
+            android:id="@+id/action_controlBookFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/pharmacyFragment"
         android:name="com.example.prbassistant.PharmacyFragment"
@@ -26,4 +30,16 @@
         android:name="com.example.prbassistant.PharmacyListFragment"
         android:label="fragment_pharmacy_list"
         tools:layout="@layout/fragment_pharmacy_list" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.prbassistant.ProfileFragment"
+        android:label="Profile PRB"
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="profile"
+            app:argType="com.example.prbassistant.model.PatienProfile" />
+        <action
+            android:id="@+id/action_profileFragment_to_controlBookFragment"
+            app:destination="@id/controlBookFragment" />
+    </fragment>
 </navigation>
