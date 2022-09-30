@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prbassistant.R
 import com.example.prbassistant.adapter.ListMedicineAdapter
 import com.example.prbassistant.model.Medicine
 import com.example.prbassistant.model.MedicinesData
+import com.example.prbassistant.ui.bookcontrol.ControlBookFragmentDirections
 
 class PharmacyFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
@@ -53,9 +55,9 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btn_tebus -> {
-                val intent = Intent (getActivity(), PharmacyActivity::class.java)
-                intent.putExtra(PharmacyListFragment.EXTRA_ID_RECEIPE, "192837465")
-                getActivity()?.startActivity(intent)
+                val idReceipt = "192837465"
+                val action = PharmacyFragmentDirections.actionPharmacyFragmentToPharmacyListFragment(idReceipt)
+                findNavController().navigate(action)
             }
         }
     }

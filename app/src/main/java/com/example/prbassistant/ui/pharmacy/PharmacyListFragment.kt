@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prbassistant.ui.MainActivity
@@ -16,11 +17,10 @@ import com.example.prbassistant.R
 import com.example.prbassistant.adapter.ListPharmacyAdapter
 import com.example.prbassistant.model.Pharmacy
 import com.example.prbassistant.model.PharmacyData
+import com.example.prbassistant.ui.bookcontrol.ProfileFragmentArgs
 
-class PharmacyListFragment : Fragment(), View.OnClickListener {
-    companion object {
-        const val EXTRA_ID_RECEIPE = "extra_id_receipe"
-    }
+class PharmacyListFragment : Fragment() {
+    private val args by navArgs<PharmacyListFragmentArgs>()
 
     private lateinit var rvPharmacy: RecyclerView
     private var listPharmacyAdapter: ListPharmacyAdapter? = null
@@ -38,7 +38,7 @@ class PharmacyListFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val id_receipt = activity?.intent?.getStringExtra(EXTRA_ID_RECEIPE)
+        val id_receipt = args.idReceipt
         rvPharmacy = view.findViewById(R.id.rv_pharmacy)
         rvPharmacy.setHasFixedSize(true)
 
@@ -53,19 +53,11 @@ class PharmacyListFragment : Fragment(), View.OnClickListener {
             }
 
         })
-
-        val btnBack: Button = view.findViewById(R.id.btn_cancel_claim)
-
-        btnBack.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
-        when(v?.id) {
-            R.id.btn_cancel_claim -> {
-                val intent = Intent (getActivity(), MainActivity::class.java)
-                getActivity()?.startActivity(intent)
-            }
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        list.clear()
     }
 
     private fun showSelectedPharmacy(pharmacy: Pharmacy) {
