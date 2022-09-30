@@ -1,4 +1,4 @@
-package com.example.prbassistant
+package com.example.prbassistant.ui.pharmacy
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prbassistant.ui.MainActivity
+import com.example.prbassistant.R
 import com.example.prbassistant.adapter.ListPharmacyAdapter
 import com.example.prbassistant.model.Pharmacy
 import com.example.prbassistant.model.PharmacyData

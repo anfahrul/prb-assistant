@@ -1,4 +1,4 @@
-package com.example.prbassistant
+package com.example.prbassistant.ui.pharmacy
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
+import com.example.prbassistant.ui.MainActivity
+import com.example.prbassistant.R
 
 class ClaimSuccessFragment : Fragment(), View.OnClickListener {
 

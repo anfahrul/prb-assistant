@@ -1,4 +1,4 @@
-package com.example.prbassistant
+package com.example.prbassistant.ui.pharmacy
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,13 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prbassistant.R
 import com.example.prbassistant.adapter.ListMedicineAdapter
 import com.example.prbassistant.model.Medicine
 import com.example.prbassistant.model.MedicinesData
-import kotlinx.coroutines.Dispatchers.Main
 
 class PharmacyFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters

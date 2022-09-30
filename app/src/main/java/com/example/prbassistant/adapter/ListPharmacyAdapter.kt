@@ -1,20 +1,12 @@
 package com.example.prbassistant.adapter
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.navigation.NavDirections
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prbassistant.PharmacyListFragment
-import com.example.prbassistant.PharmacyListFragmentDirections
-import com.example.prbassistant.model.Medicine
 import com.example.prbassistant.R
 import com.example.prbassistant.model.Pharmacy
 

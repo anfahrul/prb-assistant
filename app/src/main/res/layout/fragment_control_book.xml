@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/silver"
-    tools:context=".ControlBookFragment">
+    tools:context=".ui.bookcontrol.ControlBookFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/section_bookcontrol_profile"

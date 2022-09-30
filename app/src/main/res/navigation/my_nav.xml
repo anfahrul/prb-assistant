@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/controlBookFragment"
-        android:name="com.example.prbassistant.ControlBookFragment"
+        android:name="com.example.prbassistant.ui.bookcontrol.ControlBookFragment"
         android:label="Buku Kontrol"
         tools:layout="@layout/fragment_control_book" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/pharmacyFragment"
-        android:name="com.example.prbassistant.PharmacyFragment"
+        android:name="com.example.prbassistant.ui.pharmacy.PharmacyFragment"
         android:label="Resep Obat"
         tools:layout="@layout/fragment_pharmacy" />
     <fragment
@@ -27,12 +27,12 @@
         tools:layout="@layout/fragment_medicine_reminder" />
     <fragment
         android:id="@+id/pharmacyListFragment"
-        android:name="com.example.prbassistant.PharmacyListFragment"
+        android:name="com.example.prbassistant.ui.pharmacy.PharmacyListFragment"
         android:label="fragment_pharmacy_list"
         tools:layout="@layout/fragment_pharmacy_list" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.prbassistant.ProfileFragment"
+        android:name="com.example.prbassistant.ui.bookcontrol.ProfileFragment"
         android:label="Profile PRB"
         tools:layout="@layout/fragment_profile" >
         <argument

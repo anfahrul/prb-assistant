@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/pharmacyListFragment2"
-        android:name="com.example.prbassistant.PharmacyListFragment"
+        android:name="com.example.prbassistant.ui.pharmacy.PharmacyListFragment"
         android:label="Pilih Apotek"
         tools:layout="@layout/fragment_pharmacy_list" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/claimSuccessFragment"
-        android:name="com.example.prbassistant.ClaimSuccessFragment"
+        android:name="com.example.prbassistant.ui.pharmacy.ClaimSuccessFragment"
         android:label="Success"
         tools:layout="@layout/fragment_claim_success">
         <argument

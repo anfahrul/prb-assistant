@@ -1,10 +1,11 @@
-package com.example.prbassistant
+package com.example.prbassistant.ui.pharmacy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.prbassistant.R
 
 class PharmacyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

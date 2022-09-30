@@ -1,17 +1,13 @@
-package com.example.prbassistant
+package com.example.prbassistant.ui.bookcontrol
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.prbassistant.R
 
 class ProfileFragment : Fragment() {
     private val args by navArgs<ProfileFragmentArgs>()

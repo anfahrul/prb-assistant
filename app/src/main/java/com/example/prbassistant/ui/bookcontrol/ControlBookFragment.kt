@@ -1,4 +1,4 @@
-package com.example.prbassistant
+package com.example.prbassistant.ui.bookcontrol
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import com.example.prbassistant.R
 import com.example.prbassistant.model.PatienProfile
 import com.example.prbassistant.model.PatienProfileData
 
