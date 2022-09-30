@@ -73,7 +73,7 @@ class PharmacyListFragment : Fragment(), View.OnClickListener {
     }
 
     private fun sendSuccessData(pharmacy: Pharmacy, id_receipt: String?) {
-        val action = PharmacyListFragmentDirections.actionPharmacyListFragment2ToClaimSuccessFragment(pharmacy, id_receipt)
+        val action = PharmacyListFragmentDirections.actionPharmacyListFragmentToClaimSuccessFragment2(pharmacy, id_receipt)
         findNavController().navigate(action)
     }
 }
