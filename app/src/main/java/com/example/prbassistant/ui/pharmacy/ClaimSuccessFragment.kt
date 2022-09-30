@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.prbassistant.ui.MainActivity
 import com.example.prbassistant.R
@@ -50,8 +51,8 @@ class ClaimSuccessFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btn_success_oke -> {
-                val intent = Intent (getActivity(), MainActivity::class.java)
-                getActivity()?.startActivity(intent)
+                val action = ClaimSuccessFragmentDirections.actionClaimSuccessFragmentToPharmacyFragment()
+                findNavController().navigate(action)
             }
         }
     }
