@@ -28,7 +28,11 @@
         android:id="@+id/medicineReminderFragment3"
         android:name="com.example.prbassistant.ui.pharmacyreminder.MedicineReminderFragment"
         android:label="Pengingat Obat"
-        tools:layout="@layout/fragment_medicine_reminder" />
+        tools:layout="@layout/fragment_medicine_reminder" >
+        <action
+            android:id="@+id/action_medicineReminderFragment3_to_addMedicineFragment"
+            app:destination="@id/addMedicineFragment" />
+    </fragment>
     <fragment
         android:id="@+id/pharmacyListFragment"
         android:name="com.example.prbassistant.ui.pharmacy.PharmacyListFragment"
@@ -72,4 +76,9 @@
             android:id="@+id/action_claimSuccessFragment_to_pharmacyFragment"
             app:destination="@id/pharmacyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addMedicineFragment"
+        android:name="com.example.prbassistant.ui.pharmacyreminder.AddMedicineFragment"
+        android:label="fragment_add_medicine"
+        tools:layout="@layout/fragment_add_medicine" />
 </navigation>
