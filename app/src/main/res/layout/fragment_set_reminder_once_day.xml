@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="16dp"
+    tools:context=".ui.pharmacyreminder.SetReminderOnceDayFragment">
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/choice_reminder_dose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:chipSpacingHorizontal="4dp"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:checked="true"
+            android:text="1"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:text="2"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:text="3"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:text="4"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:text="5"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:text="6"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:text="7"/>
+    </com.google.android.material.chip.ChipGroup>
+
+    <Button
+        android:id="@+id/btn_save_count_reminder_onceday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simpan"/>
+
+</LinearLayout>

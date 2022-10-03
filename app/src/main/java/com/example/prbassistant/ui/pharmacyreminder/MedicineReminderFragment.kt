@@ -1,5 +1,7 @@
 package com.example.prbassistant.ui.pharmacyreminder
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.prbassistant.R
 import com.example.prbassistant.ui.bookcontrol.ControlBookFragmentDirections
+import java.util.Calendar
 
 class MedicineReminderFragment : Fragment(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,12 +34,13 @@ class MedicineReminderFragment : Fragment(), View.OnClickListener {
         var btnAddNewReminder: Button = view.findViewById(R.id.btn_add_new_reminder)
 
         btnAddNewReminder.setOnClickListener(this)
+
     }
 
     override fun onClick(p0: View?) {
         when(p0?.id) {
             R.id.btn_add_new_reminder -> {
-                val action = MedicineReminderFragmentDirections.actionMedicineReminderFragment3ToAddMedicineFragment()
+                val action = MedicineReminderFragmentDirections.actionMedicineReminderFragment3ToAddMedicineFragment(1)
                 findNavController().navigate(action)
             }
         }

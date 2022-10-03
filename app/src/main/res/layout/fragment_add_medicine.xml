@@ -1,14 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.pharmacyreminder.AddMedicineFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="add reminder fragment" />
+        android:layout_height="wrap_content"
+        android:paddingBottom="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edt_reminder_medicine_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="16dp"
+                android:hint="Nama Obat"
+                tools:ignore="MissingConstraints"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/edt_reminder_medicine_name"
+                android:background="@color/silver"/>
+
+            <TextView
+                android:id="@+id/text_time_amount_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/green_700"
+                android:text="Berapa Kali Sehari?"
+                app:layout_constraintTop_toBottomOf="@id/line"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <LinearLayout
+                android:id="@+id/section_reminder_medicine_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_time_amount_header"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/text_reminder_onceday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textStyle="bold"
+                        android:text="1 Kali"/>
+
+                    <Button
+                        android:id="@+id/btn_set_reminder_count_onceday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:icon="@drawable/ic_edit"
+                        android:layout_alignParentEnd="true"
+                        style="@style/Widget.App.Button.TextButton.IconOnly"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:textColor="@color/abu_abu"
+                    android:text="Kamu akan menerima notifikasi \npengingat pada jam:"/>
+
+                <!--        time-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_time_reminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="16dp"
+                    tools:listitem="@layout/item_row_time_reminder" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/section_reminder_medicine_time"
+                android:background="@color/silver"/>
+
+            <TextView
+                android:id="@+id/text_day_amount_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/green_700"
+                android:text="Selama berapa hari?"
+                app:layout_constraintTop_toBottomOf="@id/line2"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <LinearLayout
+                android:id="@+id/section_reminder_medicine_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_day_amount_header"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/abu_abu"
+                    android:text="Berapa lama obat ini dikonsumsi?"/>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp">
+
+                    <TableRow>
+                        <EditText
+                            android:id="@+id/edt_reminder_medicine_count_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:layout_weight="1"
+                            android:hint="1"/>
+
+                        <TextView
+                            android:id="@+id/btn_set_reminder_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="8"
+                            android:layout_marginStart="8dp"
+                            android:text="Hari"/>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_save_reminder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_reminder_medicine_day"
+                android:layout_margin="16dp"
+                android:text="Simpan"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
