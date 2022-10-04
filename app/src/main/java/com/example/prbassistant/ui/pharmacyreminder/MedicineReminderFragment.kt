@@ -1,23 +1,44 @@
 package com.example.prbassistant.ui.pharmacyreminder
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.prbassistant.R
-import com.example.prbassistant.ui.bookcontrol.ControlBookFragmentDirections
-import java.util.Calendar
+import com.example.prbassistant.adapter.ListMedicineReminderAdapter
+import com.example.prbassistant.adapter.ListPharmacyAdapter
+import com.example.prbassistant.model.MedicineReminder
+import java.util.ArrayList
 
-class MedicineReminderFragment : Fragment(), View.OnClickListener {
+class MedicineReminderFragment : Fragment() {
+    private var listData: ArrayList<MedicineReminder> = arrayListOf()
+    private val args by navArgs<MedicineReminderFragmentArgs>()
+    private lateinit var rvMedicineReminder: RecyclerView
+    private var listMedicineReminderAdapter: ListMedicineReminderAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         (activity as AppCompatActivity).supportActionBar?.show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater!!.inflate(R.menu.reminder_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item!!.itemId
+        if (id == R.id.btn_add_new_reminder){
+            val action = MedicineReminderFragmentDirections.actionMedicineReminderFragment3ToAddMedicineFragment(1)
+            findNavController().navigate(action)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateView(
@@ -30,19 +51,13 @@ class MedicineReminderFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        args.medicineReminder?.let { listData?.add(it) }
 
-        var btnAddNewReminder: Button = view.findViewById(R.id.btn_add_new_reminder)
+        rvMedicineReminder = view.findViewById(R.id.rv_reminder)
+        rvMedicineReminder.setHasFixedSize(true)
 
-        btnAddNewReminder.setOnClickListener(this)
-
-    }
-
-    override fun onClick(p0: View?) {
-        when(p0?.id) {
-            R.id.btn_add_new_reminder -> {
-                val action = MedicineReminderFragmentDirections.actionMedicineReminderFragment3ToAddMedicineFragment(1)
-                findNavController().navigate(action)
-            }
-        }
+        rvMedicineReminder.layoutManager = LinearLayoutManager(activity)
+        listMedicineReminderAdapter = ListMedicineReminderAdapter(listData)
+        rvMedicineReminder.adapter = listMedicineReminderAdapter
     }
 }

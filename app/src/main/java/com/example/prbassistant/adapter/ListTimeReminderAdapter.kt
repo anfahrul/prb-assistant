@@ -15,10 +15,12 @@ import com.example.prbassistant.model.TimeReminder
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
 import com.google.android.material.timepicker.TimeFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ListTimeReminderAdapter(private val listTimeReminder: ArrayList<TimeReminder>) :
     RecyclerView.Adapter<ListTimeReminderAdapter.ListViewHolder>() {
-    private var selectedItemPosition: Int = -1
+    private lateinit var calendar: Calendar
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -91,6 +93,11 @@ class ListTimeReminderAdapter(private val listTimeReminder: ArrayList<TimeRemind
                 }
 
                 holder.tvTime.text = formattedTime
+
+                calendar = Calendar.getInstance()
+                calendar[Calendar.HOUR_OF_DAY] = picker.hour
+                calendar[Calendar.MINUTE] = picker.minute
+                onItemClickCallback.onItemClicked(calendar)
             }
         }
     }
@@ -100,6 +107,6 @@ class ListTimeReminderAdapter(private val listTimeReminder: ArrayList<TimeRemind
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked()
+        fun onItemClicked(data: Calendar)
     }
 }
