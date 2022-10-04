@@ -14,7 +14,7 @@ class ListPharmacyAdapter(private val listPharmacy: ArrayList<Pharmacy>, private
     private var selectedItemPosition: Int = -1
     private lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+    fun setOnItemClickCallback(onItemClickCallback: ListPharmacyAdapter.OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 

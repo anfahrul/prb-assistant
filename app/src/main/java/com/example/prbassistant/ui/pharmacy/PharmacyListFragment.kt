@@ -1,18 +1,15 @@
 package com.example.prbassistant.ui.pharmacy
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prbassistant.ui.MainActivity
 import com.example.prbassistant.R
 import com.example.prbassistant.adapter.ListPharmacyAdapter
 import com.example.prbassistant.model.Pharmacy
