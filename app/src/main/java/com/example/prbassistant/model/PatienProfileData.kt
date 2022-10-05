@@ -13,4 +13,6 @@ object PatienProfileData {
         "Kolaka, Sulawesi Tenggara",
         "098765432123",
     )
+
+    var ProfileData = arrayOf<String>()
 }

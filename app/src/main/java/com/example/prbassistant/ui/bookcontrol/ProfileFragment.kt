@@ -37,13 +37,13 @@ class ProfileFragment : Fragment() {
         var tvAddress: TextView = view.findViewById(R.id.tv_profile_patien_address)
         val tvPhoneNumber: TextView = view.findViewById(R.id.tv_profile_patien_phone)
 
-        tvPatienName.text = args.profile.name
-        tvMedicalRecord.text = args.profile.medicalRecordNumber
-        tvHospital.text = args.profile.hospital
-        tvDiagnosis.text = args.profile.diagnosis
-        tvBPJSNumber.text = args.profile.BPJSNumber
-        tvBirthdate.text = args.profile.birthDate
-        tvAddress.text = args.profile.address
-        tvPhoneNumber.text = args.profile.phoneNumber
+        tvPatienName.text = args.profile?.name
+        tvMedicalRecord.text = args.profile?.medicalRecordNumber
+        tvHospital.text = args.profile?.hospital
+        tvDiagnosis.text = args.profile?.diagnosis
+        tvBPJSNumber.text = args.profile?.BPJSNumber
+        tvBirthdate.text = args.profile?.birthDate
+        tvAddress.text = args.profile?.address
+        tvPhoneNumber.text = args.profile?.phoneNumber
     }
 }
