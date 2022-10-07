@@ -16,9 +16,7 @@ import com.example.prbassistant.R
 import com.example.prbassistant.adapter.ListControlBookAdapter
 import com.example.prbassistant.adapter.ListPharmacyAdapter
 import com.example.prbassistant.api.RetrofitClient
-import com.example.prbassistant.model.ControlBook
-import com.example.prbassistant.model.PatienProfile
-import com.example.prbassistant.model.PatienProfileData
+import com.example.prbassistant.model.*
 import retrofit2.Call
 import retrofit2.Response
 import javax.security.auth.callback.Callback
@@ -51,12 +49,12 @@ class ControlBookFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         RetrofitClient.instance.getProfile()
-            .enqueue(object : retrofit2.Callback<PatienProfile> {
+            .enqueue(object : retrofit2.Callback<PatienData> {
                 override fun onResponse(
-                    call: Call<PatienProfile>,
-                    response: Response<PatienProfile>
+                    call: Call<PatienData>,
+                    response: Response<PatienData>
                 ) {
-                    var result = response.body()
+                    var result = response.body()?.patientProfile
                     if (result != null) {
                         profileData = PatienProfile(
                             result.name,
@@ -79,7 +77,7 @@ class ControlBookFragment : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<PatienProfile>, t: Throwable) {
+                override fun onFailure(call: Call<PatienData>, t: Throwable) {
                 }
             })
 
@@ -95,21 +93,26 @@ class ControlBookFragment : Fragment() {
         rvControlBook.setHasFixedSize(true)
         rvControlBook.layoutManager = LinearLayoutManager(activity)
 
-        RetrofitClient.instance.getPosts()
-            .enqueue(object : retrofit2.Callback<ArrayList<ControlBook>> {
+        RetrofitClient.instance.getBooks()
+            .enqueue(object : retrofit2.Callback<Books> {
                 override fun onResponse(
-                    call: Call<ArrayList<ControlBook>>,
-                    response: Response<ArrayList<ControlBook>>
+                    call: Call<Books>,
+                    response: Response<Books>
                 ) {
-                    response.body()?.let { dataList.addAll(it) }
+                    response.body()?.let { dataList.addAll(it.books) }
                     listControlBookAdapter = ListControlBookAdapter(dataList)
                     rvControlBook.adapter = listControlBookAdapter
                 }
 
-                override fun onFailure(call: Call<ArrayList<ControlBook>>, t: Throwable) {
+                override fun onFailure(call: Call<Books>, t: Throwable) {
                 }
 
             })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        dataList.clear()
     }
 
 }

@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+    private const val BASE_URL = "https://ee12-125-162-213-219.ap.ngrok.io"
 
     val instance: Api by lazy {
         val retrofit = Retrofit.Builder()

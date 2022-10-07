@@ -11,10 +11,15 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prbassistant.R
+import com.example.prbassistant.adapter.ListControlBookAdapter
 import com.example.prbassistant.adapter.ListPharmacyAdapter
+import com.example.prbassistant.api.RetrofitClient
+import com.example.prbassistant.model.ControlBook
 import com.example.prbassistant.model.Pharmacy
 import com.example.prbassistant.model.PharmacyData
 import com.example.prbassistant.ui.bookcontrol.ProfileFragmentArgs
+import retrofit2.Call
+import retrofit2.Response
 
 class PharmacyListFragment : Fragment() {
     private val args by navArgs<PharmacyListFragmentArgs>()
@@ -28,7 +33,6 @@ class PharmacyListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        list.addAll(PharmacyData.listData)
         return inflater.inflate(R.layout.fragment_pharmacy_list, container, false)
     }
 
@@ -38,18 +42,32 @@ class PharmacyListFragment : Fragment() {
         val id_receipt = args.idReceipt
         rvPharmacy = view.findViewById(R.id.rv_pharmacy)
         rvPharmacy.setHasFixedSize(true)
-
         rvPharmacy.layoutManager = LinearLayoutManager(activity)
-        listPharmacyAdapter = ListPharmacyAdapter(list, id_receipt)
-        rvPharmacy.adapter = listPharmacyAdapter
 
-        listPharmacyAdapter!!.setOnItemClickCallback(object : ListPharmacyAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: Pharmacy, id_receipt: String?) {
-                showSelectedPharmacy(data)
-                sendSuccessData(data, id_receipt)
-            }
+        RetrofitClient.instance.getPharmacy()
+            .enqueue(object : retrofit2.Callback<ArrayList<Pharmacy>> {
+                override fun onResponse(
+                    call: Call<ArrayList<Pharmacy>>,
+                    response: Response<ArrayList<Pharmacy>>
+                ) {
+                    response.body()?.let { list.addAll(it) }
+                    listPharmacyAdapter = ListPharmacyAdapter(list, id_receipt)
+                    rvPharmacy.adapter = listPharmacyAdapter
 
-        })
+                    listPharmacyAdapter?.setOnItemClickCallback(object :
+                        ListPharmacyAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: Pharmacy, id_receipt: String?) {
+                            showSelectedPharmacy(data)
+                            sendSuccessData(data, id_receipt)
+                        }
+
+                    })
+                }
+
+                override fun onFailure(call: Call<ArrayList<Pharmacy>>, t: Throwable) {
+                }
+
+            })
     }
 
     override fun onDestroyView() {
@@ -62,7 +80,11 @@ class PharmacyListFragment : Fragment() {
     }
 
     private fun sendSuccessData(pharmacy: Pharmacy, id_receipt: String?) {
-        val action = PharmacyListFragmentDirections.actionPharmacyListFragmentToClaimSuccessFragment2(pharmacy, id_receipt)
+        val action =
+            PharmacyListFragmentDirections.actionPharmacyListFragmentToClaimSuccessFragment2(
+                pharmacy,
+                id_receipt
+            )
         findNavController().navigate(action)
     }
 }

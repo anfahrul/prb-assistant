@@ -6,20 +6,20 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PatienProfile(
-    @SerializedName("name")
+    @SerializedName("Name")
     var name: String = "",
-    @SerializedName("username")
+    @SerializedName("MedicalRecord")
     var medicalRecordNumber: String = "",
-    @SerializedName("email")
+    @SerializedName("Hospital")
     var hospital: String = "",
-    @SerializedName("phone")
+    @SerializedName("Diagnosis")
     var diagnosis: String = "",
-    @SerializedName("website")
+    @SerializedName("BpjsNumber")
     var BPJSNumber: String = "",
-    @SerializedName("street")
+    @SerializedName("Bithdate")
     var birthDate: String = "",
-    @SerializedName("suite")
+    @SerializedName("Address")
     var address: String = "",
-    @SerializedName("city")
+    @SerializedName("PhoneNumber")
     var phoneNumber: String = "",
 ): Parcelable

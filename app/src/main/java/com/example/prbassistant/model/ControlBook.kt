@@ -6,12 +6,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ControlBook(
-    @SerializedName("userId")
+    @SerializedName("CheckDate")
     var dateCheck: String = "",
-    @SerializedName("id")
+    @SerializedName("DoctorName")
     var doctorName: String = "",
-    @SerializedName("title")
+    @SerializedName("MedicalStatus")
     var medicalStatus: String = "",
-    @SerializedName("body")
+    @SerializedName("Note")
     var note: String = "",
 ): Parcelable

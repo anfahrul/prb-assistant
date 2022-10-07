@@ -1,7 +1,8 @@
 package com.example.prbassistant.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Medicine(
-    var name: String = "",
-    var amount: Int = 0,
-    var portion: Int = 0
+    @SerializedName("medicine")
+    var drugs: ArrayList<Drug>
 )

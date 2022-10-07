@@ -5,9 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Pharmacy(
-    @SerializedName("Name")
-    var name: String = "",
-    @SerializedName("Address")
-    var address: String = "",
+data class PatienData(
+    @SerializedName("patientData")
+    var patientProfile: PatienProfile
 ): Parcelable

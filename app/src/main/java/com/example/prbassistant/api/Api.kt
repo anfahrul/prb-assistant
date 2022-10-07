@@ -1,14 +1,25 @@
 package com.example.prbassistant.api
 
-import com.example.prbassistant.model.ControlBook
-import com.example.prbassistant.model.PatienProfile
+import com.example.prbassistant.model.*
 import retrofit2.Call
 import retrofit2.http.GET
 
 interface Api {
-    @GET("posts")
-    fun getPosts(): Call<ArrayList<ControlBook>>
+    @GET("pharmacy")
+    fun getPharmacy(): Call<ArrayList<Pharmacy>>
 
-    @GET("users/1")
-    fun getProfile(): Call<PatienProfile>
+    @GET("bookcontrol/4")
+    fun getBooks(): Call<Books>
+
+    @GET("bookcontrol/4")
+    fun getProfile(): Call<PatienData>
+
+    @GET("pharmacy/recipe?recipeId=1")
+    fun getMedicineOnRecipe(): Call<Medicine>
+
+    @GET("pharmacy/recipe?recipeId=1")
+    fun getRecipe(): Call<Recipe>
+
+    @GET("pharmacy/recipe?recipeId=1")
+    fun getPharmacyOnRecipe(): Call<PharmacySelected>
 }

@@ -1,35 +1,42 @@
 package com.example.prbassistant.ui.pharmacy
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prbassistant.R
-import com.example.prbassistant.adapter.ListMedicineAdapter
-import com.example.prbassistant.model.Medicine
-import com.example.prbassistant.model.MedicinesData
-import com.example.prbassistant.ui.bookcontrol.ControlBookFragmentDirections
+import com.example.prbassistant.adapter.ListControlBookAdapter
+import com.example.prbassistant.adapter.ListDrugAdapter
+import com.example.prbassistant.api.RetrofitClient
+import com.example.prbassistant.model.*
+import retrofit2.Call
+import retrofit2.Response
 
 class PharmacyFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private lateinit var rvMedicine: RecyclerView
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<ListMedicineAdapter.ListViewHolder>? = null
-    private var list: ArrayList<Medicine> = arrayListOf()
+    private var listDrugAdapter: ListDrugAdapter? = null
+    private var list = ArrayList<Drug>()
+    private var recipe = Recipe()
+    private var pharmacySelected = Pharmacy()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.show()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        list.addAll(MedicinesData.listData)
         return inflater.inflate(R.layout.fragment_pharmacy, container, false)
     }
 
@@ -37,11 +44,78 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         rvMedicine = view.findViewById(R.id.rv_heroes)
         rvMedicine.setHasFixedSize(true)
+        rvMedicine.layoutManager = LinearLayoutManager(activity)
 
-        rvMedicine.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = ListMedicineAdapter(list)
-        }
+        RetrofitClient.instance.getRecipe()
+            .enqueue(object : retrofit2.Callback<Recipe> {
+                override fun onResponse(
+                    call: Call<Recipe>,
+                    response: Response<Recipe>
+                ) {
+                    var result = response.body()
+                    if (result != null) {
+                        recipe = Recipe(
+                            result.recipeId,
+                            result.claimStatus,
+                        )
+
+                        val tvIdRecipe: TextView =
+                            view.findViewById(R.id.text_id_receipe)
+                        val tvClaimStatus: TextView =
+                            view.findViewById(R.id.text_status)
+
+                        tvIdRecipe.text = recipe.recipeId.toString()
+                        tvClaimStatus.text = recipe.claimStatus
+                    }
+                }
+
+                override fun onFailure(call: Call<Recipe>, t: Throwable) {
+                }
+            })
+
+        RetrofitClient.instance.getMedicineOnRecipe()
+            .enqueue(object : retrofit2.Callback<Medicine> {
+                override fun onResponse(
+                    call: Call<Medicine>,
+                    response: Response<Medicine>
+                ) {
+                    response.body()?.let { list.addAll(it.drugs) }
+                    listDrugAdapter = ListDrugAdapter(list)
+                    rvMedicine.adapter = listDrugAdapter
+                }
+
+                override fun onFailure(call: Call<Medicine>, t: Throwable) {
+                }
+
+            })
+
+        RetrofitClient.instance.getPharmacyOnRecipe()
+            .enqueue(object : retrofit2.Callback<PharmacySelected> {
+                override fun onResponse(
+                    call: Call<PharmacySelected>,
+                    response: Response<PharmacySelected>
+                ) {
+                    var result = response.body()
+                    if (result != null) {
+                        pharmacySelected = Pharmacy(
+                            result.pharmacy.name,
+                            result.pharmacy.address,
+                        )
+
+                        val tvPharmacy: TextView =
+                            view.findViewById(R.id.text_apotek_name)
+                        val tvAddress: TextView =
+                            view.findViewById(R.id.text_address)
+
+                        tvPharmacy.text = pharmacySelected.name
+                        tvAddress.text = pharmacySelected.address
+                    }
+                }
+
+                override fun onFailure(call: Call<PharmacySelected>, t: Throwable) {
+                }
+            })
+
 
         var btnTebus = view.findViewById<Button>(R.id.btn_tebus)
         btnTebus.setOnClickListener(this)

@@ -12,7 +12,7 @@ object PharmacyData {
     private val pharmacyAddress = arrayOf(
         "Jl. Raya Menganti A-17",
         "Jl. Raya Rungkut Mapan Fa-7",
-        "Jl. Dharmawangsa No.28 ",
+        "Jl. Dharmawangsa No.28",
         "Jl Raya Darmo No. 2-4 Surabaya",
         "Perak Timur 166"
     )

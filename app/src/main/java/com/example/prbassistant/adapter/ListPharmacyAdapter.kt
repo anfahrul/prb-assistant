@@ -1,6 +1,8 @@
 package com.example.prbassistant.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +31,7 @@ class ListPharmacyAdapter(private val listPharmacy: ArrayList<Pharmacy>, private
         return ListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val pharmacy = listPharmacy[position]
         holder.tvName.text = pharmacy.name
         holder.tvAaddress.text = pharmacy.address

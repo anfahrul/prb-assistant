@@ -1,11 +1,13 @@
 package com.example.prbassistant.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prbassistant.R
+import com.example.prbassistant.model.Books
 import com.example.prbassistant.model.ControlBook
 
 class ListControlBookAdapter(private val listControlBook: ArrayList<ControlBook>): RecyclerView.Adapter<ListControlBookAdapter.ListViewHolder>() {

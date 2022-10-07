@@ -11,11 +11,11 @@ object MedicinesData {
     private val medicineAmount = intArrayOf(3,5,2,1,9)
     private val medicinePortion = intArrayOf(2,3,2,1,6)
 
-    val listData: ArrayList<Medicine>
+    val listData: ArrayList<Drug>
         get() {
-            val list = arrayListOf<Medicine>()
+            val list = arrayListOf<Drug>()
             for (position in medicineName.indices) {
-                val medicine = Medicine()
+                val medicine = Drug()
                 medicine.name = medicineName[position]
                 medicine.amount = medicineAmount[position]
                 medicine.portion = medicinePortion[position]
