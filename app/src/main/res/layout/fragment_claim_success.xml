@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/img_success"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="80dp"
             android:src="@drawable/ic_success"/>
 
         <TextView

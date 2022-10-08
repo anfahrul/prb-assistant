@@ -24,7 +24,6 @@ class ListDrugAdapter(private val listMedicine: ArrayList<Drug>): RecyclerView.A
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val medicine = listMedicine[position]
-        Log.d("TEST", "${listMedicine.size}")
         holder.tvName.text = medicine.name
         holder.tvAmount.text = medicine.amount.toString()
         holder.tvPortion.text = medicine.portion.toString()

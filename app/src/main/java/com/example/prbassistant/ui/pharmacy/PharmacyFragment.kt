@@ -1,5 +1,7 @@
 package com.example.prbassistant.ui.pharmacy
 
+import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +19,7 @@ import com.example.prbassistant.adapter.ListControlBookAdapter
 import com.example.prbassistant.adapter.ListDrugAdapter
 import com.example.prbassistant.api.RetrofitClient
 import com.example.prbassistant.model.*
+import com.google.android.material.chip.Chip
 import retrofit2.Call
 import retrofit2.Response
 
@@ -48,6 +52,7 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
 
         RetrofitClient.instance.getRecipe()
             .enqueue(object : retrofit2.Callback<Recipe> {
+                @SuppressLint("ResourceAsColor")
                 override fun onResponse(
                     call: Call<Recipe>,
                     response: Response<Recipe>
@@ -59,13 +64,21 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
                             result.claimStatus,
                         )
 
-                        val tvIdRecipe: TextView =
+                        var tvIdRecipe: TextView =
                             view.findViewById(R.id.text_id_receipe)
-                        val tvClaimStatus: TextView =
+                        var tvClaimStatus: TextView =
+                            view.findViewById(R.id.text_status)
+                        var chip: Chip =
                             view.findViewById(R.id.text_status)
 
                         tvIdRecipe.text = recipe.recipeId.toString()
                         tvClaimStatus.text = recipe.claimStatus
+
+                        if (recipe.claimStatus == "Belum diklaim") {
+                            chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.yellow))
+                        } else if (recipe.claimStatus == "Diklaim") {
+                            chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.green_light))
+                        }
                     }
                 }
 
@@ -98,6 +111,7 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
                     var result = response.body()
                     if (result != null) {
                         pharmacySelected = Pharmacy(
+                            result.pharmacy.pharmacyId,
                             result.pharmacy.name,
                             result.pharmacy.address,
                         )
@@ -129,7 +143,7 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btn_tebus -> {
-                val idReceipt = "192837465"
+                val idReceipt = recipe.recipeId.toString()
                 val action = PharmacyFragmentDirections.actionPharmacyFragmentToPharmacyListFragment(idReceipt)
                 findNavController().navigate(action)
             }

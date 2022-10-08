@@ -1,6 +1,7 @@
 package com.example.prbassistant.ui.pharmacy
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +18,10 @@ import com.example.prbassistant.api.RetrofitClient
 import com.example.prbassistant.model.ControlBook
 import com.example.prbassistant.model.Pharmacy
 import com.example.prbassistant.model.PharmacyData
+import com.example.prbassistant.model.RequestPharmacy
 import com.example.prbassistant.ui.bookcontrol.ProfileFragmentArgs
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class PharmacyListFragment : Fragment() {
@@ -57,8 +60,9 @@ class PharmacyListFragment : Fragment() {
                     listPharmacyAdapter?.setOnItemClickCallback(object :
                         ListPharmacyAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: Pharmacy, id_receipt: String?) {
-                            showSelectedPharmacy(data)
+                            updateDataOnDatabase(data.pharmacyId)
                             sendSuccessData(data, id_receipt)
+
                         }
 
                     })
@@ -70,13 +74,30 @@ class PharmacyListFragment : Fragment() {
             })
     }
 
+    private fun updateDataOnDatabase(pharmacyId: Int) {
+        var requestData = RequestPharmacy(
+            claimStatus = "Diklaim",
+            pharmacyId = pharmacyId
+        )
+        RetrofitClient.instance.updatePharmacy(requestData).enqueue(
+            object : Callback<String> {
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                }
+
+                override fun onResponse(
+                    call: Call<String>,
+                    response: Response<String>
+                ) {
+                    Toast.makeText(context, "${response.body()}", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        )
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         list.clear()
-    }
-
-    private fun showSelectedPharmacy(pharmacy: Pharmacy) {
-        Toast.makeText(this.activity, "Kamu memilih " + pharmacy.name, Toast.LENGTH_SHORT).show()
     }
 
     private fun sendSuccessData(pharmacy: Pharmacy, id_receipt: String?) {

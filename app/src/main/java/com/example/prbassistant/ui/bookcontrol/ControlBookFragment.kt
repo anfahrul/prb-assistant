@@ -1,5 +1,6 @@
 package com.example.prbassistant.ui.bookcontrol
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import com.example.prbassistant.adapter.ListControlBookAdapter
 import com.example.prbassistant.adapter.ListPharmacyAdapter
 import com.example.prbassistant.api.RetrofitClient
 import com.example.prbassistant.model.*
+import com.example.prbassistant.ui.MainActivity
 import retrofit2.Call
 import retrofit2.Response
 import javax.security.auth.callback.Callback
@@ -26,10 +28,7 @@ class ControlBookFragment : Fragment() {
     private var listControlBookAdapter: ListControlBookAdapter? = null
     private var dataList = ArrayList<ControlBook>()
     private var profileData = PatienProfile()
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
+    private var receive: TextView?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

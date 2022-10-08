@@ -23,29 +23,28 @@
             android:textStyle="bold"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_nik"
+            android:id="@+id/layout_medical_record"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Nomor Induk Kependudukan"
+            android:layout_marginHorizontal="64dp"
+            android:hint="Nomor Medical Record"
             tools:ignore="MissingConstraints"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_medical_record"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button_login"
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="64dp"
+            android:layout_marginTop="16dp"
             android:text="Masuk"/>
     </LinearLayout>
 
