@@ -15,6 +15,8 @@ import com.example.prbassistant.R
 import com.example.prbassistant.adapter.ListControlBookAdapter
 import com.example.prbassistant.adapter.ListPharmacyAdapter
 import com.example.prbassistant.api.RetrofitClient
+import com.example.prbassistant.helper.Constant
+import com.example.prbassistant.helper.PreferenceHelper
 import com.example.prbassistant.model.ControlBook
 import com.example.prbassistant.model.Pharmacy
 import com.example.prbassistant.model.PharmacyData
@@ -26,10 +28,10 @@ import retrofit2.Response
 
 class PharmacyListFragment : Fragment() {
     private val args by navArgs<PharmacyListFragmentArgs>()
-
     private lateinit var rvPharmacy: RecyclerView
     private var listPharmacyAdapter: ListPharmacyAdapter? = null
     private var list: ArrayList<Pharmacy> = arrayListOf()
+    lateinit var sharedPref: PreferenceHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +43,9 @@ class PharmacyListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedPref = PreferenceHelper(requireContext())
+        val medicalRecordNumber = sharedPref.getInt(Constant.PREF_MEDICAL_RECORD_NUMBER).toString()
 
         val id_receipt = args.idReceipt
         rvPharmacy = view.findViewById(R.id.rv_pharmacy)
@@ -60,7 +65,7 @@ class PharmacyListFragment : Fragment() {
                     listPharmacyAdapter?.setOnItemClickCallback(object :
                         ListPharmacyAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: Pharmacy, id_receipt: String?) {
-                            updateDataOnDatabase(data.pharmacyId)
+                            updateDataOnDatabase(data.pharmacyId, medicalRecordNumber)
                             sendSuccessData(data, id_receipt)
 
                         }
@@ -74,12 +79,12 @@ class PharmacyListFragment : Fragment() {
             })
     }
 
-    private fun updateDataOnDatabase(pharmacyId: Int) {
+    private fun updateDataOnDatabase(pharmacyId: Int, medicalRecordNumber: String) {
         var requestData = RequestPharmacy(
             claimStatus = "Diklaim",
             pharmacyId = pharmacyId
         )
-        RetrofitClient.instance.updatePharmacy(requestData).enqueue(
+        RetrofitClient.instance.updatePharmacy(requestData, medicalRecordNumber).enqueue(
             object : Callback<String> {
                 override fun onFailure(call: Call<String>, t: Throwable) {
                 }

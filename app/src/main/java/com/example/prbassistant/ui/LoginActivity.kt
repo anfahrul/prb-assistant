@@ -13,6 +13,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.prbassistant.R
 import com.example.prbassistant.api.RetrofitClient
+import com.example.prbassistant.helper.Constant
+import com.example.prbassistant.helper.PreferenceHelper
 import com.example.prbassistant.model.PatienData
 import com.example.prbassistant.model.PatienProfile
 import retrofit2.Call
@@ -20,10 +22,12 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private var patientData = PatienProfile()
+    lateinit var sharedPref: PreferenceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        sharedPref = PreferenceHelper(this)
 
         supportActionBar?.hide()
 
@@ -52,6 +56,8 @@ class LoginActivity : AppCompatActivity() {
                                 )
                             }
 
+                            sharedPref.put(Constant.PREF_MEDICAL_RECORD_NUMBER, patientData.medicalRecordNumber.toInt())
+                            Toast.makeText(applicationContext, "Berhasil masuk", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             startActivity(intent)
                         } else {

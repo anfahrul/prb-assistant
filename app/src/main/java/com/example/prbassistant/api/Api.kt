@@ -9,28 +9,28 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface Api {
-    @GET("patient/{medicalNumber}")
+    @GET("api/patient/{medicalNumber}")
     fun getPatient(@Path("medicalNumber") medicalNumber: String): Call<PatienProfile>
 
-    @GET("pharmacy")
+    @GET("api/pharmacy")
     fun getPharmacy(): Call<ArrayList<Pharmacy>>
 
-    @GET("bookcontrol/123")
-    fun getBooks(): Call<Books>
+    @GET("api/bookcontrol/{medicalNumber}")
+    fun getBooks(@Path("medicalNumber") medicalNumber: String): Call<Books>
 
-    @GET("bookcontrol/123")
-    fun getProfile(): Call<PatienData>
+    @GET("api/bookcontrol/{medicalNumber}")
+    fun getProfile(@Path("medicalNumber") medicalNumber: String): Call<PatienData>
 
-    @GET("pharmacy/recipe?recipeId=123")
-    fun getMedicineOnRecipe(): Call<Medicine>
+    @GET("api/pharmacy/{medicalNumber}")
+    fun getMedicineOnRecipe(@Path("medicalNumber") medicalNumber: String): Call<Medicine>
 
-    @GET("pharmacy/recipe?recipeId=123")
-    fun getRecipe(): Call<Recipe>
+    @GET("api/pharmacy/{medicalNumber}")
+    fun getRecipe(@Path("medicalNumber") medicalNumber: String): Call<Recipe>
 
-    @GET("pharmacy/recipe?recipeId=123")
-    fun getPharmacyOnRecipe(): Call<PharmacySelected>
+    @GET("api/pharmacy/{medicalNumber}")
+    fun getPharmacyOnRecipe(@Path("medicalNumber") medicalNumber: String): Call<PharmacySelected>
 
     @Headers("Content-Type: application/json")
-    @PUT("pharmacy/123")
-    fun updatePharmacy(@Body pharmacy:RequestPharmacy): Call<String>
+    @PUT("api/pharmacy/{medicalNumber}")
+    fun updatePharmacy(@Body pharmacy:RequestPharmacy, @Path("medicalNumber") medicalNumber: String): Call<String>
 }

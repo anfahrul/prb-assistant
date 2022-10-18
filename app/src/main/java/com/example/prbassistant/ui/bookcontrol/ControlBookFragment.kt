@@ -1,6 +1,8 @@
 package com.example.prbassistant.ui.bookcontrol
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,6 +19,8 @@ import com.example.prbassistant.R
 import com.example.prbassistant.adapter.ListControlBookAdapter
 import com.example.prbassistant.adapter.ListPharmacyAdapter
 import com.example.prbassistant.api.RetrofitClient
+import com.example.prbassistant.helper.Constant
+import com.example.prbassistant.helper.PreferenceHelper
 import com.example.prbassistant.model.*
 import com.example.prbassistant.ui.MainActivity
 import retrofit2.Call
@@ -28,7 +32,7 @@ class ControlBookFragment : Fragment() {
     private var listControlBookAdapter: ListControlBookAdapter? = null
     private var dataList = ArrayList<ControlBook>()
     private var profileData = PatienProfile()
-    private var receive: TextView?= null
+    lateinit var sharedPref: PreferenceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +51,10 @@ class ControlBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        RetrofitClient.instance.getProfile()
+        sharedPref = PreferenceHelper(requireContext())
+        val medicalRecordNumber = sharedPref.getInt(Constant.PREF_MEDICAL_RECORD_NUMBER).toString()
+
+        RetrofitClient.instance.getProfile(medicalRecordNumber)
             .enqueue(object : retrofit2.Callback<PatienData> {
                 override fun onResponse(
                     call: Call<PatienData>,
@@ -92,7 +99,7 @@ class ControlBookFragment : Fragment() {
         rvControlBook.setHasFixedSize(true)
         rvControlBook.layoutManager = LinearLayoutManager(activity)
 
-        RetrofitClient.instance.getBooks()
+        RetrofitClient.instance.getBooks(medicalRecordNumber)
             .enqueue(object : retrofit2.Callback<Books> {
                 override fun onResponse(
                     call: Call<Books>,

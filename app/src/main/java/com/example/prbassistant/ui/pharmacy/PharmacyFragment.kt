@@ -1,8 +1,10 @@
 package com.example.prbassistant.ui.pharmacy
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +20,8 @@ import com.example.prbassistant.R
 import com.example.prbassistant.adapter.ListControlBookAdapter
 import com.example.prbassistant.adapter.ListDrugAdapter
 import com.example.prbassistant.api.RetrofitClient
+import com.example.prbassistant.helper.Constant
+import com.example.prbassistant.helper.PreferenceHelper
 import com.example.prbassistant.model.*
 import com.google.android.material.chip.Chip
 import retrofit2.Call
@@ -30,6 +34,7 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
     private var list = ArrayList<Drug>()
     private var recipe = Recipe()
     private var pharmacySelected = Pharmacy()
+    lateinit var sharedPref: PreferenceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +55,10 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
         rvMedicine.setHasFixedSize(true)
         rvMedicine.layoutManager = LinearLayoutManager(activity)
 
-        RetrofitClient.instance.getRecipe()
+        sharedPref = PreferenceHelper(requireContext())
+        val medicalRecordNumber = sharedPref.getInt(Constant.PREF_MEDICAL_RECORD_NUMBER).toString()
+
+        RetrofitClient.instance.getRecipe(medicalRecordNumber)
             .enqueue(object : retrofit2.Callback<Recipe> {
                 @SuppressLint("ResourceAsColor")
                 override fun onResponse(
@@ -86,7 +94,7 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
                 }
             })
 
-        RetrofitClient.instance.getMedicineOnRecipe()
+        RetrofitClient.instance.getMedicineOnRecipe(medicalRecordNumber)
             .enqueue(object : retrofit2.Callback<Medicine> {
                 override fun onResponse(
                     call: Call<Medicine>,
@@ -102,7 +110,7 @@ class PharmacyFragment : Fragment(), View.OnClickListener {
 
             })
 
-        RetrofitClient.instance.getPharmacyOnRecipe()
+        RetrofitClient.instance.getPharmacyOnRecipe(medicalRecordNumber)
             .enqueue(object : retrofit2.Callback<PharmacySelected> {
                 override fun onResponse(
                     call: Call<PharmacySelected>,
