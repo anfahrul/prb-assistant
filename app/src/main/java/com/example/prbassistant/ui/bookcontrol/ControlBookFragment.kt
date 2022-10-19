@@ -29,7 +29,7 @@ import javax.security.auth.callback.Callback
 
 class ControlBookFragment : Fragment() {
     private lateinit var rvControlBook: RecyclerView
-    private var listControlBookAdapter: ListControlBookAdapter? = null
+//    private var listControlBookAdapter: ListControlBookAdapter? = null
     private var dataList = ArrayList<ControlBook>()
     private var profileData = PatienProfile()
     lateinit var sharedPref: PreferenceHelper
@@ -106,7 +106,8 @@ class ControlBookFragment : Fragment() {
                     response: Response<Books>
                 ) {
                     response.body()?.let { dataList.addAll(it.books) }
-                    listControlBookAdapter = ListControlBookAdapter(dataList)
+                    Log.d("TEST", "count ${response.body()}")
+                    val listControlBookAdapter = ListControlBookAdapter(dataList)
                     rvControlBook.adapter = listControlBookAdapter
                 }
 

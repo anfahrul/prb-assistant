@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prbassistant.R
 import com.example.prbassistant.model.Books
 import com.example.prbassistant.model.ControlBook
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ListControlBookAdapter(private val listControlBook: ArrayList<ControlBook>): RecyclerView.Adapter<ListControlBookAdapter.ListViewHolder>() {
  inner class ListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -25,7 +28,10 @@ class ListControlBookAdapter(private val listControlBook: ArrayList<ControlBook>
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val bookControl = listControlBook[position]
-        holder.tvDate.text = bookControl.dateCheck
+        val simpleDateFormat = SimpleDateFormat("EEE, dd MMMM yyyy")
+        val result = Date(bookControl.dateCheck.toLong())
+
+        holder.tvDate.text = simpleDateFormat.format(result)
         holder.tvDoctorName.text = bookControl.doctorName
         holder.tvMedicalStatus.text = bookControl.medicalStatus
         holder.tvNote.text = bookControl.note
